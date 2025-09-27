@@ -136,7 +136,7 @@ class OllamaService {
 
             // Calculate context window size
             const promptTokenCount = this._calculatePromptTokenCount(prompt);
-            const numCtx = this._calculateNumCtx(promptTokenCount, 1024);
+            const numCtx = 8192 //this._calculateNumCtx(promptTokenCount, 1024);
 
             console.log(`[DEBUG] Use existing data: ${config.useExistingData}, Restrictions applied based on useExistingData setting`);
             console.log(`[DEBUG] External API data: ${validatedExternalApiData ? 'included' : 'none'}`);
@@ -185,7 +185,7 @@ class OllamaService {
         try {
             // Calculate context window size
             const promptTokenCount = await calculateTokens(prompt);
-            const numCtx = this._calculateNumCtx(promptTokenCount, 1024);
+            const numCtx = 8192 //this._calculateNumCtx(promptTokenCount, 1024);
 
             // Generate playground system prompt (simpler than full analysis)
             const systemPrompt = this._generatePlaygroundSystemPrompt();
@@ -552,7 +552,7 @@ class OllamaService {
                 repeat_penalty: 1.1,
                 top_k: 7,
                 num_predict: 256,
-                num_ctx: numCtx
+                num_ctx: 8192 //numCtx
             }
         });
 
@@ -685,7 +685,7 @@ class OllamaService {
         try {
             // Calculate context window size based on prompt length
             const promptTokenCount = this._calculatePromptTokenCount(prompt);
-            const numCtx = this._calculateNumCtx(promptTokenCount, 512);
+            const numCtx = 8192 //this._calculateNumCtx(promptTokenCount, 512);
 
             // Simple system prompt for text generation
             const systemPrompt = `You are a helpful assistant. Generate a clear, concise, and informative response to the user's question or request.`;
@@ -700,7 +700,7 @@ class OllamaService {
                     temperature: 0.7,
                     top_p: 0.9,
                     num_predict: 1024,
-                    num_ctx: numCtx
+                    num_ctx: 8192 //numCtx
                 }
             });
 
